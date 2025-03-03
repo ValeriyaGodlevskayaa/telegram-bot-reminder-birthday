@@ -1,0 +1,3 @@
+[submodule "projects/reminder-telegram-bot"]
+	path = projects/reminder-telegram-bot
+	url = https://github.com/ValeriyaGodlevskayaa/reminder-telegram-bot.git
