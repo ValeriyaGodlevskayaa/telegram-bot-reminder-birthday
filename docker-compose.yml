@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  bot-postgres:
+    image: postgres:17
+    container_name: bot-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: "telegram_bot_db"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "secret"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:

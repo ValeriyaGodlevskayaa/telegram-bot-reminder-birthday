@@ -1,0 +1,7 @@
+{
+    "projects": {
+        "reminder-telegram-bot": {
+            "credentialSecret": false
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "api_url": "https://api.telegram.org/bot",
+    "token": "7924096352:AAEvAsqxWNNF4H5115xTt0nZ8yBP9OSXqWU",
+    "lastCommand_354507984": "/list",
+    "lastCommand_461954921": "/help",
+    "lastCommand_498273350": "/list",
+    "processedCommand_354507984": "/list",
+    "processedCommand_461954921": "/help",
+    "processedCommand_498273350": "/list",
+    "state_354507984": "waitingForName",
+    "state_461954921": null,
+    "tempName_354507984": "/addcontact",
+    "state_498273350": null,
+    "tempName_498273350": null,
+    "tempName_461954921": null
+}

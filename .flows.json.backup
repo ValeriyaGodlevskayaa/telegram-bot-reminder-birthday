@@ -1,0 +1,391 @@
+[
+    {
+        "id": "362dabe1c9aaff1a",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "00d18c878db9dca9",
+        "type": "tab",
+        "label": "Postgres",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "746980f6d65e6454",
+        "type": "postgreSQLConfig",
+        "name": "db",
+        "host": "localhost",
+        "hostFieldType": "str",
+        "port": "5432",
+        "portFieldType": "num",
+        "database": "telegram_bot_db",
+        "databaseFieldType": "str",
+        "ssl": "false",
+        "sslFieldType": "bool",
+        "applicationName": "",
+        "applicationNameType": "str",
+        "max": 10,
+        "maxFieldType": "num",
+        "idle": 1000,
+        "idleFieldType": "num",
+        "connectionTimeout": 10000,
+        "connectionTimeoutFieldType": "num",
+        "user": "admin",
+        "userFieldType": "str",
+        "password": "secret",
+        "passwordFieldType": "str"
+    },
+    {
+        "id": "c79a9909676c7066",
+        "type": "inject",
+        "z": "362dabe1c9aaff1a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 60,
+        "wires": [
+            [
+                "c83c3d781285fe1b"
+            ]
+        ]
+    },
+    {
+        "id": "c83c3d781285fe1b",
+        "type": "http request",
+        "z": "362dabe1c9aaff1a",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.telegram.org/bot7924096352:AAEvAsqxWNNF4H5115xTt0nZ8yBP9OSXqWU/getUpdates",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 310,
+        "y": 60,
+        "wires": [
+            [
+                "70f75ead1401abf4"
+            ]
+        ]
+    },
+    {
+        "id": "d8f30af73195637b",
+        "type": "debug",
+        "z": "362dabe1c9aaff1a",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "70f75ead1401abf4",
+        "type": "json",
+        "z": "362dabe1c9aaff1a",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 530,
+        "y": 60,
+        "wires": [
+            [
+                "d8f30af73195637b"
+            ]
+        ]
+    },
+    {
+        "id": "edee4bc017e2e179",
+        "type": "http in",
+        "z": "362dabe1c9aaff1a",
+        "name": "post telegram",
+        "url": "/send-message",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "5ac11fba2437eb80"
+            ]
+        ]
+    },
+    {
+        "id": "5ac11fba2437eb80",
+        "type": "function",
+        "z": "362dabe1c9aaff1a",
+        "name": "function 2",
+        "func": "\nmsg.payload = {\n    chat_id: msg.payload.chat_id,\n    text: \"Привіт! А що на тобі вдягнено ...))\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 140,
+        "wires": [
+            [
+                "4a45973fce20cd03",
+                "870e239dd6e88e37"
+            ]
+        ]
+    },
+    {
+        "id": "4a45973fce20cd03",
+        "type": "http request",
+        "z": "362dabe1c9aaff1a",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.telegram.org/bot7924096352:AAEvAsqxWNNF4H5115xTt0nZ8yBP9OSXqWU/sendMessage",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 650,
+        "y": 140,
+        "wires": [
+            [
+                "2a347fa620d3df74",
+                "87477b803521cb66"
+            ]
+        ]
+    },
+    {
+        "id": "2a347fa620d3df74",
+        "type": "http response",
+        "z": "362dabe1c9aaff1a",
+        "name": "response",
+        "statusCode": "",
+        "headers": {},
+        "x": 860,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "87477b803521cb66",
+        "type": "debug",
+        "z": "362dabe1c9aaff1a",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "870e239dd6e88e37",
+        "type": "debug",
+        "z": "362dabe1c9aaff1a",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f96cb37ae45b30a0",
+        "type": "postgresql",
+        "z": "00d18c878db9dca9",
+        "name": "Create table users",
+        "query": "CREATE TABLE IF NOT EXISTS users (\n    id BIGSERIAL PRIMARY KEY,\n    chat_id BIGINT UNIQUE NOT NULL,\n    username varchar(255) NOT NULL\n);",
+        "postgreSQLConfig": "746980f6d65e6454",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 310,
+        "y": 60,
+        "wires": [
+            [
+                "46e76d91dbe8ab51"
+            ]
+        ]
+    },
+    {
+        "id": "5d14283fccfddbc4",
+        "type": "inject",
+        "z": "00d18c878db9dca9",
+        "name": "Set",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 60,
+        "wires": [
+            [
+                "f96cb37ae45b30a0"
+            ]
+        ]
+    },
+    {
+        "id": "a19c2a665c0a0a78",
+        "type": "inject",
+        "z": "00d18c878db9dca9",
+        "name": "Set",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "fa24300093038136"
+            ]
+        ]
+    },
+    {
+        "id": "fa24300093038136",
+        "type": "postgresql",
+        "z": "00d18c878db9dca9",
+        "name": "Create table contacts",
+        "query": "CREATE TABLE IF NOT EXISTS contacts (\n    id BIGSERIAL PRIMARY KEY,\n    user_id INT REFERENCES users(id),\n    name varchar(255) NOT NULL,\n    birthday DATE\n);",
+        "postgreSQLConfig": "746980f6d65e6454",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 320,
+        "y": 120,
+        "wires": [
+            [
+                "46e76d91dbe8ab51"
+            ]
+        ]
+    },
+    {
+        "id": "46e76d91dbe8ab51",
+        "type": "debug",
+        "z": "00d18c878db9dca9",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "e1ae9b9957aa17dd",
+        "type": "inject",
+        "z": "00d18c878db9dca9",
+        "name": "Get",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "fbc9ab073d8b6b37"
+            ]
+        ]
+    },
+    {
+        "id": "fbc9ab073d8b6b37",
+        "type": "postgresql",
+        "z": "00d18c878db9dca9",
+        "name": "get all",
+        "query": "SELECT * FROM users \n    INNER JOIN contacts \n    ON users.id = contacts.user_id;",
+        "postgreSQLConfig": "746980f6d65e6454",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 270,
+        "y": 200,
+        "wires": [
+            [
+                "46e76d91dbe8ab51"
+            ]
+        ]
+    }
+]
