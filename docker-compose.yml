@@ -13,5 +13,13 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+  bot-node-red:
+    image: nodered/node-red:latest
+    container_name: bot-node-red
+    restart: always
+    ports:
+      - "1889:1880"
+    volumes:
+      - .:/data
 volumes:
   postgres_data:

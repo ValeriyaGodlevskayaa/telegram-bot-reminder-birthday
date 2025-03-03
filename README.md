@@ -45,34 +45,32 @@ You can view the database schema created for this project at the following link:
 ## Installation
 1. Clone repository:
    ```
-    git clone https://github.com/ValeriyaGodlevskayaa/telegram-bot-reminder-birthday.git
+   git clone https://github.com/ValeriyaGodlevskayaa/telegram-bot-reminder-birthday.git
+   cd telegram-bot-reminder-birthday/projects/reminder-telegram-bot
+   git clone https://github.com/ValeriyaGodlevskayaa/reminder-telegram-bot.git .
    ```
 2. Navigate to the project directory and install dependencies::
    ```
-   cd .node-red
+   cd telegram-bot-reminder-birthday
    npm install
    ```
-3. Start PostgreSQL using Docker Compose:
+3. Start using Docker Compose:
    ```
    docker-compose up -d
    ```
-4. Run Node-RED:
-   ``` 
-   node-red 
+4. Open Node-RED in your browser:
    ```
-5. Open Node-RED in your browser:
+   http://127.0.0.1:1889/
    ```
-   http://127.0.0.1:1880/
-   ```
-6. Set up your Telegram bot after receiving a token from BotFather or use the pre-configured bot [@remindBirthday123_bot](https://t.me/remindBirthday123_bot) and save it in:
+5. Set up your Telegram bot after receiving a token from BotFather or use the pre-configured bot [@remindBirthday123_bot](https://t.me/remindBirthday123_bot) and save it in:
    ```
    node config telegram api:
       flow.api_url: https://api.telegram.org/bot
       flow.token: YOUR_TELEGRAM_BOT_TOKEN (or use this token: 7924096352:AAEvAsqxWNNF4H5115xTt0nZ8yBP9OSXqWU)
    ```
-7. Run `ngrok' to create a public URL for webhooks:
+6. Run `ngrok' to create a public URL for webhooks:
    ```
-      ngrok http 80
+      ngrok http 1889
    ```
    Copy the received HTTPS URL and use it to set up a webhook in Telegram in node: set webhook.
 
